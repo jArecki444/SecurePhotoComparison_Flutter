@@ -2,7 +2,7 @@ import 'package:flutter/services.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:safe_photo_comparison/feature/biometric_auth/domain/repository/biometrics_auth_repository.dart';
 
-class LocalAuthBiometricsRepository extends BiometricsAuthRepository {
+class BiometricsAuthRepositoryImpl extends BiometricsAuthRepository {
   final _auth = LocalAuthentication();
 
   @override
