@@ -1,11 +1,11 @@
 part of 'biometric_auth_bloc.dart';
 
 @freezed
-class BiometricAuthPageState with _$BiometricAuthPageState {
-  const factory BiometricAuthPageState({
+class BiometricAuthState with _$BiometricAuthState {
+  const factory BiometricAuthState({
     required PageStatus pageStatus,
     required List<String> availableBiometricsOptions,
-  }) = _BiometricAuthPageState;
+  }) = _BiometricAuthState;
 }
 
 @freezed

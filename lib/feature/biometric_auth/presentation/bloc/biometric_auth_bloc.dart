@@ -6,13 +6,12 @@ part 'biometric_auth_event.dart';
 part 'biometric_auth_state.dart';
 part 'biometric_auth_bloc.freezed.dart';
 
-class BiometricAuthBloc
-    extends Bloc<BiometricAuthPageEvent, BiometricAuthPageState> {
+class BiometricAuthBloc extends Bloc<BiometricAuthEvent, BiometricAuthState> {
   final BiometricsAuthUseCase _biometricsUseCase;
 
   BiometricAuthBloc(this._biometricsUseCase)
       : super(
-          const BiometricAuthPageState(
+          const BiometricAuthState(
             availableBiometricsOptions: [],
             pageStatus: PageStatus.checkingBiometricsAvailability(),
           ),
@@ -22,7 +21,7 @@ class BiometricAuthBloc
   }
 
   void _setBiometricsAvailability(SetBiometricsAvailabilityEvent event,
-      Emitter<BiometricAuthPageState> emit) async {
+      Emitter<BiometricAuthState> emit) async {
     final hasBiometricsEnabled =
         await _biometricsUseCase.hasBiometricsEnabled();
 
@@ -42,14 +41,15 @@ class BiometricAuthBloc
       emit(
         state.copyWith(
           pageStatus: PageStatus.biometricsUnavailable(
-              reason: unavailableBiometricsReason),
+            reason: unavailableBiometricsReason,
+          ),
         ),
       );
     }
   }
 
   void _tryToAuthorizeWithBiometrics(TryToAuthorizeWithBiometricsEvent event,
-      Emitter<BiometricAuthPageState> emit) async {
+      Emitter<BiometricAuthState> emit) async {
     final isAuthorized = await _biometricsUseCase.authenticateWithBiometrics();
 
     emit(
