@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
+import 'package:safe_photo_comparison/core/dependency_injection.dart';
 import 'package:safe_photo_comparison/feature/biometric_auth/presentation/biometric_auth_page.dart';
 
 void main() {
+  // Configure dependency injection.
+  configureDependencies(const Environment('dev'));
+
   runApp(const MyApp());
 }
 
