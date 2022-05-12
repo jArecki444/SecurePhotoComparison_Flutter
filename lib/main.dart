@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:safe_photo_comparison/core/dependency_injection.dart';
 import 'package:safe_photo_comparison/feature/biometric_auth/presentation/biometric_auth_page.dart';
@@ -7,7 +9,9 @@ void main() {
   // Configure dependency injection.
   configureDependencies(const Environment('dev'));
 
-  runApp(const MyApp());
+  //Wrap runApp with BlocOverrides to support BlocDevTools.
+  BlocOverrides.runZoned(() async => runApp(const MyApp()),
+      blocObserver: BlocTransitionObserver());
 }
 
 class MyApp extends StatelessWidget {
@@ -23,5 +27,20 @@ class MyApp extends StatelessWidget {
       ),
       home: const BiometricAuthPage(),
     );
+  }
+}
+
+class BlocTransitionObserver extends BlocObserver {
+  @override
+  void onTransition(Bloc bloc, Transition transition) {
+    super.onTransition(bloc, transition);
+    if (kDebugMode) {
+      print(
+        'BLOC LOGGER - ${bloc.runtimeType} - CURRENT STATE -  ${transition.currentState}',
+      );
+      print(
+        'BLOC LOGGER - ${bloc.runtimeType} - STATE CHANGED TO - ${transition.nextState}',
+      );
+    }
   }
 }
