@@ -9,9 +9,13 @@ void main() {
   // Configure dependency injection.
   configureDependencies(const Environment('dev'));
 
-  //Wrap runApp with BlocOverrides to support BlocDevTools.
-  BlocOverrides.runZoned(() async => runApp(const MyApp()),
-      blocObserver: BlocTransitionObserver());
+  if (kDebugMode) {
+    //Wrap runApp with BlocOverrides to support BlocDevTools.
+    BlocOverrides.runZoned(() async => runApp(const MyApp()),
+        blocObserver: BlocTransitionObserver());
+  } else {
+    runApp(const MyApp());
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -32,15 +36,19 @@ class MyApp extends StatelessWidget {
 
 class BlocTransitionObserver extends BlocObserver {
   @override
+  void onEvent(Bloc bloc, Object? event) {
+    super.onEvent(bloc, event);
+    print('BLOC LOGGER- ${bloc.runtimeType} - EVENT - $event');
+  }
+
+  @override
   void onTransition(Bloc bloc, Transition transition) {
     super.onTransition(bloc, transition);
-    if (kDebugMode) {
-      print(
-        'BLOC LOGGER - ${bloc.runtimeType} - CURRENT STATE -  ${transition.currentState}',
-      );
-      print(
-        'BLOC LOGGER - ${bloc.runtimeType} - STATE CHANGED TO - ${transition.nextState}',
-      );
-    }
+    print(
+      'BLOC LOGGER - ${bloc.runtimeType} - CURRENT STATE -  ${transition.currentState}',
+    );
+    print(
+      'BLOC LOGGER - ${bloc.runtimeType} - STATE CHANGED TO - ${transition.nextState}',
+    );
   }
 }
