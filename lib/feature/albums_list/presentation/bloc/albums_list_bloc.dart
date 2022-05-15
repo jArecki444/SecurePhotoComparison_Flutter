@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'albums_event.dart';
-part 'albums_state.dart';
-part 'albums_bloc.freezed.dart';
+part 'albums_list_event.dart';
+part 'albums_list_state.dart';
+part 'albums_list_bloc.freezed.dart';
 
 class AlbumsBloc extends Bloc<AlbumsEvent, AlbumsState> {
   AlbumsBloc()

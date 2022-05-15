@@ -1,4 +1,4 @@
-part of 'albums_bloc.dart';
+part of 'albums_list_bloc.dart';
 
 @freezed
 class AlbumsEvent with _$AlbumsEvent {

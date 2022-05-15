@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:safe_photo_comparison/feature/albums/presentation/albums_page.dart';
+import 'package:safe_photo_comparison/feature/albums_list/presentation/albums_list_page.dart';
 import 'package:safe_photo_comparison/feature/biometric_auth/domain/use_case/biometrics_auth_use_case.dart';
 
 import 'bloc/biometric_auth_bloc.dart';

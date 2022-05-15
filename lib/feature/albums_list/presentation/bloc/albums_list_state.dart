@@ -1,4 +1,4 @@
-part of 'albums_bloc.dart';
+part of 'albums_list_bloc.dart';
 
 @freezed
 class AlbumsState with _$AlbumsState {
@@ -11,5 +11,5 @@ class AlbumsState with _$AlbumsState {
 class PageStatus with _$PageStatus {
   const factory PageStatus.noAlbums() = _NoAlbums;
   const factory PageStatus.albumList() = _AlbumList;
-  const factory PageStatus.albumDetails() = _AlbumDetails;
+  const factory PageStatus.creatingAlbum() = _CreatingAlbum;
 }
