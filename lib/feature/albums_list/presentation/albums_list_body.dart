@@ -13,11 +13,9 @@ class AlbumsBody extends StatelessWidget {
       body: BlocBuilder<AlbumsBloc, AlbumsState>(
         builder: (context, state) {
           return Center(
-            child: state.pageStatus.maybeMap(
+            child: state.pageStatus.map(
               albumList: (_) => const Text('Album list'),
-              creatingAlbum: (_) => const Text('Creating album'),
               noAlbums: (_) => const NoAlbumsBody(),
-              orElse: () {},
             ),
           );
         },
