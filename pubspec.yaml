@@ -25,6 +25,8 @@ dependencies:
   build_runner: ^2.1.10
   freezed: ^1.1.0
   freezed_annotation: ^1.1.0
+  json_serializable: ^6.2.0
+  json_annotation: ^4.5.0
 
   # Dependency injection
   get_it: ^7.2.0
@@ -37,6 +39,9 @@ dependencies:
 
   # Image picker
   image_picker: ^0.7.2+1
+
+  # Data persistence
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
   flutter_lints: ^1.0.0
